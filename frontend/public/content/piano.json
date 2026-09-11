@@ -1,0 +1,92 @@
+{
+  "slug": "piano",
+  "title": "Piano",
+  "tagline": "Find your way around the keys.",
+  "category": "Music",
+  "accent": "#b4622a",
+  "status": "LIVE",
+  "exerciseNumber": "01",
+  "exerciseTitle": "Find your hand position",
+  "idea": [
+    {
+      "type": "PROSE",
+      "text": "Eighty-eight keys looks like a lot to learn. It isn't. The whole keyboard is one small pattern printed over and over, and once you can see the pattern you can find any note on any piano in the world."
+    },
+    {
+      "type": "KEYBOARD",
+      "octaves": 2,
+      "labels": "none",
+      "caption": "Two of everything. Ignore the white keys for a second and just look at the black ones.",
+      "ariaLabel": "Two octaves of a piano keyboard with no labels, showing black keys in alternating groups of two and three."
+    },
+    {
+      "type": "KEY_IDEA",
+      "text": "The black keys come in groups of two and three. That is the entire map."
+    },
+    {
+      "type": "PROSE",
+      "text": "Those groups never change and never break. Two, three, two, three, all the way up. Which means you always know roughly where you are — and it gives you one landmark you can find without counting anything."
+    },
+    {
+      "type": "KEYBOARD",
+      "octaves": 2,
+      "labels": "c-only",
+      "highlight": ["C"],
+      "caption": "The white key immediately left of any group of two is C. Every time, on every piano.",
+      "ariaLabel": "Two octaves of a piano keyboard with the C keys highlighted and labelled, each sitting immediately to the left of a group of two black keys."
+    },
+    {
+      "type": "PROSE",
+      "text": "From C, the white keys just walk up the alphabet — C, D, E, F, G, A, B — and then start again at C. Seven letters, repeating forever. That is every white key on the instrument."
+    },
+    {
+      "type": "KEYBOARD",
+      "octaves": 2,
+      "labels": "all",
+      "caption": "Seven letters, then the same seven again.",
+      "ariaLabel": "Two octaves of a piano keyboard with every white key labelled C, D, E, F, G, A, B and then repeating."
+    },
+    {
+      "type": "KEY_IDEA",
+      "text": "You are only ever learning seven names. Everything else is repetition."
+    },
+    {
+      "type": "PROSE",
+      "text": "Now put your hands on it. Pick any note — say F. Your right thumb goes on that F, and your other four fingers take the next four white keys going up. Your left hand takes the same five white keys an octave lower, but mirrored: pinky on the F, thumb at the top."
+    },
+    { "type": "HAND_RULE", "note": "F" },
+    {
+      "type": "PROSE",
+      "text": "There is no correct octave and no correct place on the keyboard. Anywhere comfortable is right. The shape is the thing you are learning, not the location."
+    }
+  ],
+  "playground": {
+    "promptType": "NOTE_LETTER",
+    "items": ["C", "D", "E", "F", "G", "A", "B"],
+    "order": "RANDOM",
+    "speeds": [
+      { "label": "Unhurried", "ms": 8000 },
+      { "label": "Steady", "ms": 5000 },
+      { "label": "Brisk", "ms": 3000 }
+    ],
+    "defaultSpeedLabel": "Unhurried",
+    "instruction": "Right thumb on the note. Left pinky on the same note, an octave down."
+  },
+  "whatsNext": [
+    {
+      "number": "02",
+      "title": "Name the note",
+      "description": "See a key, know what it is called — without counting up from C every time."
+    },
+    {
+      "number": "03",
+      "title": "Keep time",
+      "description": "Play a steady beat and stay inside it, which is harder and more useful than it sounds."
+    },
+    {
+      "number": "04",
+      "title": "Your first chord",
+      "description": "Three notes at once, using the hand shape you already know."
+    }
+  ]
+}
