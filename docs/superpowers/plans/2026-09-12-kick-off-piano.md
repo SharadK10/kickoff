@@ -23,6 +23,8 @@
 - **Light theme only.** Do not add dark mode.
 - **Commit after every task.** Conventional commit messages.
 
+> **Amendment, mid-execution (2026-09-12):** by explicit user direction, automated testing is dropped for the remainder of this plan. Tasks 1-6 were built test-first as written below; a dedicated task then deleted every test file and all test tooling (Vitest, Testing Library, jsdom) from the project. **Every "Test:" file target and TDD step (write failing test / run to verify it fails / run to verify it passes) below, in every task, is void from that point forward** — left in place only as a record of how the first six tasks were actually built. Tasks 7 onward are implemented directly from the given component/hook code and verified by `npm run build` plus the manual walkthrough in Task 11. See the plan's ledger for the ruling and its cost.
+
 ---
 
 ## File Structure
