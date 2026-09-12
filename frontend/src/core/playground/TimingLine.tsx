@@ -1,7 +1,7 @@
 /**
  * Shows when the prompt will change. A CSS animation rather than a JS one so
  * that pausing is a single property change and stays in step with the timer.
- * This indicates timing, not achievement — it is the only meter in Kick Off.
+ * This indicates timing, not progress — it is the only meter in Kick Off.
  */
 export function TimingLine({
   durationMs,

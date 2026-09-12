@@ -44,9 +44,7 @@ export function KickoffRoute() {
             </li>
           ))}
         </ul>
-        <p className="mt-12 max-w-[46ch] text-ink-muted">
-          And when you have this — go and play a real piano. Kick Off is for starting, not for staying.
-        </p>
+        <p className="mt-12 max-w-[46ch] text-ink-muted">{kickoff.closing}</p>
       </Section>
     </KickoffTheme>
   )

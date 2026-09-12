@@ -37,4 +37,6 @@ export type Kickoff = KickoffSummary & {
   idea: Block[]
   playground: PlaygroundConfig
   whatsNext: NextItem[]
+  /** A closing line for the "What's Next" section. Kickoff-specific copy, owned by content. */
+  closing: string
 }
