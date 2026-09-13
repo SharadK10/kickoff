@@ -87,23 +87,33 @@ export function ScaleDrillPlayground({ config }: { config: Record<string, unknow
         role="status"
         aria-live="polite"
         aria-atomic="true"
-        className="flex h-48 flex-col items-center justify-center gap-2 sm:h-64"
+        className="flex h-48 flex-col items-center justify-center gap-4 sm:h-64"
       >
         <AnimatePresence mode="wait">
           <motion.div
-            key={index}
+            key={current.scale}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="text-xs uppercase tracking-[0.16em] text-ink-faint">Scale of {current.scale}</span>
-            <span className="font-display text-[7rem] leading-none text-ink sm:text-[11rem]">{current.note}</span>
-            <span className="text-sm text-ink-muted">
-              right {current.rightFinger} · left {current.leftFinger}
-            </span>
+            <span className="text-xs uppercase tracking-[0.16em] text-ink-faint">Scale of</span>
+            <span className="font-display text-[7rem] leading-none text-ink sm:text-[11rem]">{current.scale}</span>
           </motion.div>
+        </AnimatePresence>
+
+        <AnimatePresence mode="wait">
+          <motion.span
+            key={index}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            className="text-sm text-ink-muted"
+          >
+            {current.note} · right {current.rightFinger} · left {current.leftFinger}
+          </motion.span>
         </AnimatePresence>
       </div>
 
