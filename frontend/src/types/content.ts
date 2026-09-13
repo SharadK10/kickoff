@@ -5,20 +5,17 @@ export type Speed = { label: string; ms: number }
 
 export type Order = 'RANDOM' | 'SEQUENTIAL'
 
+/** One item in a playground's sequence. Opaque to core — the registered prompt component interprets it. */
+export type PlaygroundItem = Record<string, unknown>
+
 export type PlaygroundConfig = {
   /** Opaque to core. A kickoff registers a prompt renderer for this string. */
   promptType: string
-  items: string[]
+  items: PlaygroundItem[]
   order: Order
   speeds: Speed[]
   defaultSpeedLabel: string
   instruction: string
-}
-
-export type NextItem = {
-  number: string
-  title: string
-  description: string
 }
 
 export type KickoffSummary = {
@@ -31,12 +28,23 @@ export type KickoffSummary = {
   status: 'LIVE' | 'COMING_SOON'
 }
 
+export type Exercise = {
+  slug: string
+  number: string
+  title: string
+  status: 'LIVE' | 'COMING_SOON'
+  /** Shown on the hub for COMING_SOON entries; optional for LIVE ones, which speak for themselves via their own page. */
+  description?: string
+  /** Present only when LIVE. */
+  idea?: Block[]
+  /** Opaque to core. Selects which registered playground component renders `playground`. Present only when LIVE. */
+  playgroundType?: string
+  /** Opaque to core — shape is owned by whichever component `playgroundType` selects. Present only when LIVE. */
+  playground?: Record<string, unknown>
+}
+
 export type Kickoff = KickoffSummary & {
-  exerciseNumber: string
-  exerciseTitle: string
-  idea: Block[]
-  playground: PlaygroundConfig
-  whatsNext: NextItem[]
-  /** A closing line for the "What's Next" section. Kickoff-specific copy, owned by content. */
+  /** A closing line shown once, below the exercise list. Kickoff-specific copy, owned by content. */
   closing: string
+  exercises: Exercise[]
 }
