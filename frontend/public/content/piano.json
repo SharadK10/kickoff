@@ -62,7 +62,15 @@
   ],
   "playground": {
     "promptType": "NOTE_LETTER",
-    "items": ["C", "D", "E", "F", "G", "A", "B"],
+    "items": [
+      { "note": "C" },
+      { "note": "D" },
+      { "note": "E" },
+      { "note": "F" },
+      { "note": "G" },
+      { "note": "A" },
+      { "note": "B" }
+    ],
     "order": "RANDOM",
     "speeds": [
       { "label": "Unhurried", "ms": 8000 },

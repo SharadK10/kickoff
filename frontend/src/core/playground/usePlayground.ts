@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import type { Order, PlaygroundConfig, Speed } from '../../types/content'
+import { useCallback, useMemo, useState } from 'react'
+import type { Order, PlaygroundConfig, PlaygroundItem, Speed } from '../../types/content'
 import { nextIndex } from './nextIndex'
+import { usePlaygroundTimer } from './usePlaygroundTimer'
 
 export type PlaygroundController = {
-  current: string
+  current: PlaygroundItem
   index: number
   isPaused: boolean
   speed: Speed
@@ -16,7 +17,7 @@ export type PlaygroundController = {
 
 /**
  * Runs a playground: a timer, an order, and a pause. It knows nothing about
- * what the items mean — they are opaque strings supplied by a kickoff.
+ * what the items mean — they are opaque objects supplied by a kickoff.
  */
 export function usePlayground(config: PlaygroundConfig): PlaygroundController {
   const defaultSpeed = useMemo(
@@ -31,13 +32,11 @@ export function usePlayground(config: PlaygroundConfig): PlaygroundController {
 
   const itemCount = config.items.length
 
-  useEffect(() => {
-    if (isPaused || itemCount === 0) return
-    const timer = window.setInterval(() => {
-      setIndex((current) => nextIndex(itemCount, current, order))
-    }, speed.ms)
-    return () => window.clearInterval(timer)
-  }, [isPaused, itemCount, order, speed.ms])
+  const onTick = useCallback(() => {
+    setIndex((current) => nextIndex(itemCount, current, order))
+  }, [itemCount, order])
+
+  usePlaygroundTimer({ isPaused: isPaused || itemCount === 0, speedMs: speed.ms, onTick })
 
   const togglePause = useCallback(() => setIsPaused((paused) => !paused), [])
 
@@ -52,7 +51,7 @@ export function usePlayground(config: PlaygroundConfig): PlaygroundController {
   const chooseOrder = useCallback((next: Order) => setOrder(next), [])
 
   return {
-    current: config.items[index] ?? '',
+    current: config.items[index] ?? {},
     index,
     isPaused,
     speed,

@@ -1,15 +1,9 @@
 import type { Order, Speed } from '../../types/content'
+import { PauseControl } from './PauseControl'
+import { SpeedControl } from './SpeedControl'
 
 const SEGMENT =
   'rounded-full px-3 py-1.5 text-sm transition-colors aria-pressed:bg-ink aria-pressed:text-surface text-ink-muted hover:text-ink'
-
-function Group({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-1" role="group" aria-label={label}>
-      {children}
-    </div>
-  )
-}
 
 export function PlaygroundControls({
   speeds,
@@ -30,21 +24,9 @@ export function PlaygroundControls({
 }) {
   return (
     <div className="flex flex-col items-center gap-5 sm:flex-row sm:gap-8">
-      <Group label="Speed">
-        {speeds.map((candidate) => (
-          <button
-            key={candidate.label}
-            type="button"
-            className={SEGMENT}
-            aria-pressed={candidate.label === speed.label}
-            onClick={() => onSpeed(candidate.label)}
-          >
-            {candidate.label}
-          </button>
-        ))}
-      </Group>
+      <SpeedControl speeds={speeds} speed={speed} onSpeed={onSpeed} />
 
-      <Group label="Order">
+      <div className="flex items-center gap-1" role="group" aria-label="Order">
         <button type="button" className={SEGMENT} aria-pressed={order === 'RANDOM'} onClick={() => onOrder('RANDOM')}>
           Shuffled
         </button>
@@ -56,16 +38,9 @@ export function PlaygroundControls({
         >
           In order
         </button>
-      </Group>
+      </div>
 
-      <button
-        type="button"
-        onClick={onTogglePause}
-        className="rounded-full border border-line px-5 py-1.5 text-sm text-ink transition-colors hover:bg-surface-raised"
-      >
-        {isPaused ? 'Resume' : 'Pause'}
-        <span className="ml-2 text-ink-faint">space</span>
-      </button>
+      <PauseControl isPaused={isPaused} onTogglePause={onTogglePause} />
     </div>
   )
 }

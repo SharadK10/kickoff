@@ -1,34 +1,22 @@
 import { AnimatePresence, motion } from 'motion/react'
-import { useEffect } from 'react'
 import type { PlaygroundConfig } from '../../types/content'
 import { PlaygroundControls } from './PlaygroundControls'
 import { TimingLine } from './TimingLine'
 import { getPromptComponent } from './promptRegistry'
 import { usePlayground } from './usePlayground'
-
-const IGNORE_SPACE_ON = new Set(['INPUT', 'TEXTAREA', 'BUTTON', 'SELECT', 'A'])
+import { useSpacebarPause } from './useSpacebarPause'
+import { useWakeLock } from './useWakeLock'
 
 export function Playground({ config }: { config: PlaygroundConfig }) {
   const playground = usePlayground(config)
   const Prompt = getPromptComponent(config.promptType)
-  const { togglePause } = playground
+
+  useSpacebarPause(playground.togglePause)
+  useWakeLock()
 
   if (!Prompt) {
     console.warn(`Kick Off: no renderer registered for prompt type "${config.promptType}"`)
   }
-
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.code !== 'Space') return
-      const target = event.target as HTMLElement | null
-      // A focused button already handles space as a click; let it, or we toggle twice.
-      if (target && (IGNORE_SPACE_ON.has(target.tagName) || target.isContentEditable)) return
-      event.preventDefault()
-      togglePause()
-    }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [togglePause])
 
   return (
     <div className="flex flex-col items-center gap-10">
@@ -48,7 +36,7 @@ export function Playground({ config }: { config: PlaygroundConfig }) {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            {Prompt ? <Prompt prompt={playground.current} /> : null}
+            {Prompt ? <Prompt item={playground.current} /> : null}
           </motion.div>
         </AnimatePresence>
       </div>

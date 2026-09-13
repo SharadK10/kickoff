@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
+import type { PlaygroundItem } from '../../types/content'
 
-export type PromptComponent = ComponentType<{ prompt: string }>
+export type PromptComponent = ComponentType<{ item: PlaygroundItem }>
 
 const registry = new Map<string, PromptComponent>()
 
